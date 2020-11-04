@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fiona.dao.IUserMapper">
+
+    <resultMap id="myUserMap" type="user">
+        <!-- column 数据库的字段，property 实体类中的属性 -->
+       <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="pwd" property="mypassword" />
+    </resultMap>
+
+    <select id="getUserById" resultMap="myUserMap">
+        select * from mybatis.user where id = #{id};
+    </select>
+
+
+</mapper>
