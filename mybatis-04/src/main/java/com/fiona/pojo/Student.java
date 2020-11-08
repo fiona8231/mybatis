@@ -3,9 +3,14 @@ package com.fiona.pojo;
 public class Student {
     private int id;
     private String name;
+    private int teacherId;
 
-    //学生需要关联一个老师
-    private Teacher teacher;
+
+    public Student(int id, String name, int teacherId) {
+        this.id = id;
+        this.name = name;
+        this.teacherId = teacherId;
+    }
 
     public Student() {
     }
@@ -26,12 +31,12 @@ public class Student {
         this.name = name;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public int getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     @Override
@@ -39,7 +44,7 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", teacher=" + teacher +
+                ", teacherId=" + teacherId +
                 '}';
     }
 }
