@@ -15,6 +15,9 @@
     <select id="getUserById" resultMap="myUserMap">
         select * from mybatis.user where id = #{id};
     </select>
-
+    <!-- 分页 -->
+    <select id="getUserByLimit" parameterType="map" resultType="user"  resultMap="myUserMap">
+         select * from mybatis.user limit #{startIndex}, #{pageSize};
+    </select>
 
 </mapper>
