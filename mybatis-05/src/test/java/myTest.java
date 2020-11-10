@@ -54,11 +54,11 @@ public class myTest {
         BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
 
         HashMap map  = new HashMap();
-       // List<Blog> blogs = mapper.queryIf(map);
+       List<Blog> blogs = mapper.queryIf(map);
 
         //search with title
-        map.put("title", "JAVA BLOG");
-        List<Blog> blogs = mapper.queryIf(map);
+        //map.put("title", "JAVA BLOG");
+        //List<Blog> blogs = mapper.queryIf(map);
 
         for(Blog b : blogs){
             System.out.println(b);
@@ -66,4 +66,45 @@ public class myTest {
 
         sqlSession.close();
     }
+
+    @Test
+    public void queryChoose(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        HashMap map  = new HashMap();
+        //List<Blog> blogs = mapper.queryIf(map);
+
+        //search with title
+        map.put("title", "JAVA BLOG");
+        map.put("views", 76);
+        List<Blog> blogs = mapper.queryIf(map);
+
+        mapper.queryChoose(map);
+        for(Blog b : blogs){
+            System.out.println(b);
+        }
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void updateBlog(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        HashMap map  = new HashMap();
+
+        //search with title
+        map.put("title", "MY JAVA BLOG");
+        map.put("author", "YUE");
+        //map.put("views", 76);
+        map.put("id", "b9b0b3a5dd6e47bd8f27c35a04067765");
+
+        mapper.updateBlog(map);
+        sqlSession.commit();
+        sqlSession.close();
+
+    }
+
 }
