@@ -11,7 +11,7 @@
         <result property="id" column="sid"/>
         <result property="name" column="sname"/>
         <!-- teacher object -->
-        <association property="teacherq" javaType="Teacher">
+        <association property="teacher" javaType="Teacher">
             <result property="name" column="tname" />
         </association>
     </resultMap>
