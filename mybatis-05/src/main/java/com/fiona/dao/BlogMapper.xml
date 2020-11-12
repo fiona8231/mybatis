@@ -45,18 +45,32 @@
     <update id="updateBlog" parameterType="map">
         update mybatis.blog
         <set>
-            <if test="title != null">
-                title = #{title},
-            </if>
-
-            <if test="author != null">
-                author = #{author},
-            </if>
-            <if test="views != null">
-                views = #{views}
-            </if>
+            
+            <include refid="if-block"></include>
         </set>
         where id = #{id}
     </update>
 
+    <!-- 抽取相同代码 -->
+    <sql id="if-block">
+        <if test="title != null">
+            title = #{title},
+        </if>
+
+        <if test="author != null">
+            author = #{author},
+        </if>
+    </sql>
+
+    <!-- ForEach -->
+    <!-- select * from blog where 1 = 1 and (id = 1 or id = 2 or id = 3); -->
+    <select id="forEach" resultType="blog" parameterType="map">
+          select * from blog
+         <where>
+          <foreach collection="id_list" item="id" open="and (" close=")" separator="or">
+                id = #{id}
+          </foreach>
+
+         </where>
+    </select>
 </mapper>

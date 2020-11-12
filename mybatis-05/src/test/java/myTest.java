@@ -5,10 +5,7 @@ import com.fiona.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class myTest {
@@ -97,7 +94,7 @@ public class myTest {
 
         //search with title
         map.put("title", "MY JAVA BLOG");
-        map.put("author", "YUE");
+        map.put("author", "NI");
         //map.put("views", 76);
         map.put("id", "b9b0b3a5dd6e47bd8f27c35a04067765");
 
@@ -106,5 +103,26 @@ public class myTest {
         sqlSession.close();
 
     }
+    @Test
+    public void forEach(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        HashMap map  = new HashMap();
+
+        ArrayList<Integer> myList = new ArrayList<Integer>();
+       map.put("id_list", myList);
+
+        myList.add(1);
+        myList.add(2);
+
+        List<Blog> blogs = mapper.forEach(map);
+
+        for(Blog b : blogs){
+            System.out.println(b);
+        }
+        sqlSession.close();
+    }
+
 
 }
